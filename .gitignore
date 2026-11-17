@@ -7,3 +7,7 @@ enums.d.ts
 # outdated, but keep around
 typings
 enums.json
+
+# Local viewer Python runtime is outside this repository.
+__pycache__/
+*.pyc

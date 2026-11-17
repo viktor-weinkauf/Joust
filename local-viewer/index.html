@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Replay Viewer</title>
+  <link rel="stylesheet" href="/joust/joust.css">
+  <link rel="stylesheet" href="/viewer.css">
+</head>
+<body>
+  <header>
+    <div class="title"><strong>Local Replay Viewer</strong><span id="version">Patched Joust</span></div>
+    <button id="stop" class="secondary">Stop viewer</button>
+  </header>
+  <main>
+    <form id="open-form" class="toolbar">
+      <label for="replays">Recorded game</label>
+      <select id="replays" aria-label="Recorded game"></select>
+      <button id="open" type="submit">Open replay</button>
+      <button id="refresh" type="button" class="secondary">Refresh list</button>
+      <label class="file-button" for="xml-file">Open XML file</label>
+      <input id="xml-file" type="file" accept=".xml,.hsreplay" hidden>
+    </form>
+    <div id="status" role="status">Loading your recorded games…</div>
+    <section id="replay-stage" aria-label="Replay player">
+      <div id="empty"><h1>Your games, with our replay fixes.</h1><p>Choose a recorded game above and select Open replay.</p></div>
+      <div id="joust-container"></div>
+    </section>
+  </main>
+  <footer>Replays stay on this computer. Card data and artwork load from HearthstoneJSON. <span id="current-game"></span></footer>
+  <script src="/vendor/react.js"></script>
+  <script src="/vendor/react-dom.js"></script>
+  <script src="/joust/joust.js"></script>
+  <script src="/viewer.js"></script>
+</body>
+</html>

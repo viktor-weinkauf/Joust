@@ -1,0 +1,25 @@
+:root { color-scheme: dark; font-family: Segoe UI, sans-serif; background: #101820; color: #e8edf2; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: #182530; border-bottom: 1px solid #334250; }
+.title { display: flex; align-items: baseline; gap: 14px; }
+.title strong { font-size: 21px; }
+.title span { font-size: 12px; color: #6ee2c4; }
+main { padding: 14px 20px 0; }
+.toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+label { font-size: 13px; color: #b8c6d2; }
+select { flex: 1; min-width: 280px; max-width: 750px; background: #1d2c39; border: 1px solid #536575; color: #fff; padding: 10px; border-radius: 5px; font-size: 14px; }
+button, .file-button { cursor: pointer; border: 1px solid transparent; border-radius: 5px; padding: 10px 14px; background: #64ddbc; color: #09291f; font-weight: 600; font-size: 13px; }
+.secondary, .file-button { color: #e8edf2; background: #273948; border-color: #425767; }
+button:hover, .file-button:hover { filter: brightness(1.12); }
+button:disabled { cursor: wait; opacity: .55; }
+#status { padding: 10px 0; min-height: 36px; font-size: 13px; color: #9fb8ca; }
+#status.error { color: #ffb6a7; }
+#replay-stage { position: relative; height: calc(100vh - 195px); min-height: 500px; background: #12191f; border: 1px solid #334250; border-radius: 7px; overflow: hidden; }
+#joust-container, #joust-container > .joust-widget { height: 100%; width: 100%; }
+#empty { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 30px; text-align: center; }
+#empty h1 { font-size: 25px; margin-bottom: 5px; }
+#empty p { color: #9fb8ca; }
+footer { padding: 10px 20px; font-size: 11px; color: #93a5b5; }
+#current-game { margin-left: 10px; }
+@media (max-width: 1000px) { #replay-stage { height: calc(100vh - 250px); } .title { flex-direction: column; gap: 2px; } }

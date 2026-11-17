@@ -36,4 +36,5 @@ HSReplay.net, pushes to GitHub, or replaces a working deployment.
 
 The patch fixes this verified Announce Darkness case, not every possible hidden
 transformation. HSReplay.net's live player remains unchanged unless its operator
-adopts the fix; use a locally hosted build to view patched playback.
+adopts the fix. A [local launcher](local-viewer/README.md) now serves this build
+and opens HDT recordings directly from the recorded-games list.

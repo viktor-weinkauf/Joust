@@ -1,0 +1,7 @@
+# Compatibility-tested local log conversion. Legacy hsreplay uses pkg_resources.
+hsreplay==1.16.2
+hslog==1.20.0
+hearthstone==9.22.0
+setuptools==80.9.0
+aniso8601==10.0.1
+lxml==6.1.3
