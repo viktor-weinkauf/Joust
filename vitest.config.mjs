@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import { defineConfig } from "vitest/config";
 
 const root = dirname(fileURLToPath(import.meta.url));
-const enums = resolve(root, "src/enums");
+const enums = resolve(root, "src/enums").replace(/\\/g, "/");
 
 export default defineConfig({
 	plugins: [
@@ -13,7 +13,7 @@ export default defineConfig({
 			name: "enums",
 			enforce: "pre",
 			resolveId(id, importer) {
-				if (importer && resolve(dirname(importer), id) === enums) {
+				if (importer && resolve(dirname(importer), id).replace(/\\/g, "/") === enums) {
 					return enums + ".ts";
 				}
 			},
