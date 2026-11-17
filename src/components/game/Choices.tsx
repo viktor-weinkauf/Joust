@@ -35,7 +35,9 @@ export default class Choices extends EntityList<ChoicesProps> {
 	): JSX.Element {
 		let hidden = false;
 
-		const cardId = entity.cardId || this.lookup(entity.id);
+		const cardId =
+			entity.cardId ||
+			(entity.identityInvalidated ? null : this.lookup(entity.id));
 
 		// hide the coin, see initial change in #85 and simpler check after #163
 		if (

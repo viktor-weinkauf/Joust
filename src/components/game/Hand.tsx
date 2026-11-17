@@ -35,6 +35,7 @@ export default class Hand extends EntityList<HandProps> {
 			entity = new Entity(entity.id, entity.getTags());
 		} else if (
 			!entity.cardId &&
+			!entity.identityInvalidated &&
 			this.props.cardOracle &&
 			this.props.cardOracle.has(+entity.id)
 		) {

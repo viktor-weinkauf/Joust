@@ -3,6 +3,7 @@ import GameStateMutator from "../GameStateMutator";
 import ReplaceEntityMutator from "./ReplaceEntityMutator";
 import AddDiffsMutator from "./AddDiffsMutator";
 import { GameStateDiff } from "../../interfaces";
+import { CardClass, GameTag, Zone } from "../../enums";
 
 export default class TagChangeMutator implements GameStateMutator {
 	public id: number;
@@ -24,7 +25,21 @@ export default class TagChangeMutator implements GameStateMutator {
 			return state;
 		}
 
-		const newEntity = oldEntity.setTag(this.tag, this.value);
+		let newEntity = oldEntity.setTag(this.tag, this.value);
+		const creator = state.getEntity(this.value);
+		if (
+			this.tag === GameTag.DISPLAYED_CREATOR &&
+			creator &&
+			creator.cardId === "VAC_941" &&
+			(oldEntity.getZone() === Zone.HAND ||
+				oldEntity.getZone() === Zone.DECK) &&
+			oldEntity.getClass() !== CardClass.WARLOCK
+		) {
+			// Announce Darkness reports the new creator for hidden replacements
+			// without a ChangeEntity/CardID. Do not retain a known neutral card
+			// such as Barrel of Sludge. Already-revealed Warlock results are valid.
+			newEntity = newEntity.invalidateCardIdentity();
+		}
 
 		if (newEntity === oldEntity) {
 			// tag value did not change

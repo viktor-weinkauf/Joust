@@ -6,6 +6,7 @@ export default class Entity {
 		protected _id: number,
 		protected tags: Immutable.Map<string, number>,
 		protected _cardId?: string,
+		protected _identityInvalidated: boolean = false,
 	) {}
 
 	get id(): number {
@@ -18,6 +19,16 @@ export default class Entity {
 
 	get hidden(): boolean {
 		return !this.cardId;
+	}
+
+	// A hidden transformation invalidates both the previous identity and the
+	// replay-wide oracle. A later reveal must not leak backward into this state.
+	get identityInvalidated(): boolean {
+		return this._identityInvalidated;
+	}
+
+	public invalidateCardIdentity(): Entity {
+		return this.factory(this.tags, null, true);
 	}
 
 	get revealed(): boolean {
@@ -196,7 +207,11 @@ export default class Entity {
 	}
 
 	public setCardId(cardId: string): Entity {
-		return this.factory(this.tags, cardId);
+		return this.factory(
+			this.tags,
+			cardId,
+			cardId ? false : this.identityInvalidated,
+		);
 	}
 
 	public toString(): string {
@@ -210,7 +225,8 @@ export default class Entity {
 	protected factory(
 		tags: Immutable.Map<string, number>,
 		cardId: string,
+		identityInvalidated: boolean = this.identityInvalidated,
 	): Entity {
-		return new Entity(this.id, tags, cardId);
+		return new Entity(this.id, tags, cardId, identityInvalidated);
 	}
 }
